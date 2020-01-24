@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var albumDao=require('../dao/AlbumDao')
+const express = require('express');
+const router = express.Router();
+const albumDao=require('../dao/AlbumDao')
 /* GET users listing. */
 // 查全部列表
 router.get('/', function(req, res) {
