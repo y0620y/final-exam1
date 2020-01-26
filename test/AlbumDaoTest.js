@@ -53,6 +53,13 @@ describe("测试AlbumDao",function () {
            done()
        })
     })
+    it('测试按名称查询',function (done) {
+        albumDao.findAlbumsByName("zhuanji3",function (albums) {
+            assert.ok(albums.length>0)
+            albums.forEach(album=>console.log(album._id))
+            done()
+       })
+    })
     it("测试删除",function (done) {
         albumDao.deleteAlbum("5e23c7e8c7ac25e9a7fe4a91",function ({}) {
             console.log({})
