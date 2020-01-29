@@ -1,50 +1,49 @@
 const express = require('express');
 const router = express.Router();
 const albumDao = require('../dao/AlbumDao')
-/* GET users listing. */
-// 查全部列表
-router.get('/', function (req, res) {
-  albumDao.findAllAlbums(function (albums) {
-    res.json(albums)
-  })
-});
-
-//按名称查询
-router.get('/search', function (req, res) {
-  let name = req.query.keyword;
-  console.log(name)
-  if (name) {
-    albumDao.findAlbumsByName(name, function (albums) {
-      res.json(albums)
-    })
-  } else {
-    albumDao.findAllAlbums(function (albums) {
-      res.json(albums)
-    })
-  }
-
-})
 
 // 新增
 router.post('/', function (req, res) {
   let album = req.body
-  albumDao.addAlbum(album, function (nb) {
-    res.json(nb)
+  albumDao.addAlbum(album, function (newAlbum) {
+    res.json({ code: 0, msg: '新增专辑成功', data: newAlbum })
+  }, function () {
+    res.json({ code: 1, msg: '新增专辑失败' })
+  })
+})
+
+// 删除
+router.delete('/:id', function (req, res) {
+  let id = req.params.id;
+  albumDao.deleteAlbum(id, function (obj) {
+    res.json({ code: 0, msg: '删除专辑成功' })
+  }, function () {
+    res.json({ code: 1, msg: '删除专辑失败' })
   })
 })
 
 // 修改
 router.put('/', function (req, res) {
   let album = req.body
-  albumDao.updateAlbum(album._id, album, function (nb) {
-    res.json(nb)
+  albumDao.updateAlbum(album, function (newAlbum) {
+    res.json({ code: 0, msg: '修改专辑成功', data: newAlbum })
+  }, function () {
+    res.json({ code: 1, msg: '修改专辑失败' })
   })
 })
-// 删除
-router.delete('/:id', function (req, res) {
-  let id = req.params.id;
-  albumDao.deleteAlbum(id, function (obj) {
-    res.json(obj)
+
+//查询
+router.get('/', function (req, res) {
+  let query = req.query;
+  let params = {
+    pageSize: query.pageSize || 10,
+    pageNum: query.pageNum || 1,
+    keyword: query.keyword
+  }
+  albumDao.findAlbums(params, function (albums, count) {
+    res.json({ code: 0, msg: '成功', total: count, list: albums })
+  }, function () {
+    res.json({ code: 1, msg: '错误' })
   })
 })
 

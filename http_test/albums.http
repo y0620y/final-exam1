@@ -5,11 +5,11 @@
 # * 'gtrp' and 'gtr' create a GET request with or without query parameters;
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
-GET http://localhost:3000/albums
+GET http://localhost:3000/albums?pageSize=2&pageNum=2
 Accept: application/json
 
 ###
-GET http://localhost:3000/albums/search?keyword=zhuanji3
+GET http://localhost:3000/albums?keyword=zhuanji3
 Accept: application/json
 
 
