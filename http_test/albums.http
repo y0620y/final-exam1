@@ -19,7 +19,7 @@ POST http://localhost:3000/albums
 Content-Type: application/json
 
 {
-            "album_name": "新增专辑1",
+            "album_name": "新增专辑2",
             "public_time": "2017-12-12",
             "price": 100,
             "cover": "http://imgcache.qq.com/music/photo/album_300/08/300_albumpic_3751508_0.jpg",

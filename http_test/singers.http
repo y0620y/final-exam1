@@ -1,0 +1,57 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection) or
+# paste cURL into the file and request will be converted to HTTP Request format.
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+GET http://localhost:3000/singers?pageSize=2&pageNum=1
+Accept: application/json
+
+###
+GET http://localhost:3000/singers?keyword=周杰伦
+Accept: application/json
+
+
+###
+
+POST http://localhost:3000/singers
+Content-Type: application/json
+
+{
+            "singer_name": "周杰伦2",
+            "introduce":"周杰伦简介2",
+            "cover": "http://imgcache.qq.com/music/photo/singer_300/08/300_singerpic_3751508_0.jpg",
+            "albums": [
+                {
+                    "album_id": "265",
+                    "album_name": "周杰伦专辑2"
+                }
+            ]
+        }
+
+###
+
+put http://localhost:3000/singers
+Content-Type: application/json
+
+{
+            "_id": "5e326956a271bf045d5584d5",
+            "singer_name": "周杰伦3",
+            "introduce":"周杰伦简介3",
+            "cover": "http://imgcache.qq.com/music/photo/singer_300/08/300_singerpic_3751508_0.jpg",
+            "albums": [
+                {
+                    "album_id": "265",
+                    "album_name": "周杰伦专辑3"
+                }
+            ]
+        }
+
+###
+
+DELETE http://localhost:3000/singers/5e326a1e60ddec049bcbbdb7
+Accept: application/json
+
+###
+
