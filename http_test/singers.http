@@ -24,15 +24,9 @@ POST http://localhost:3000/singers
 Content-Type: application/json
 
 {
-            "singer_name": "周杰伦2",
-            "introduce":"周杰伦简介2",
-            "cover": "http://imgcache.qq.com/music/photo/singer_300/08/300_singerpic_3751508_0.jpg",
-            "albums": [
-                {
-                    "album_id": "265",
-                    "album_name": "周杰伦专辑2"
-                }
-            ]
+            "singer_name": "梁静茹",
+            "introduce":"梁静茹简介",
+            "cover": "http://imgcache.qq.com/music/photo/singer_300/08/300_singerpic_3751508_0.jpg"
         }
 
 ###
@@ -44,13 +38,7 @@ Content-Type: application/json
             "_id": "5e326956a271bf045d5584d5",
             "singer_name": "周杰伦3",
             "introduce":"周杰伦简介3",
-            "cover": "http://imgcache.qq.com/music/photo/singer_300/08/300_singerpic_3751508_0.jpg",
-            "albums": [
-                {
-                    "album_id": "265",
-                    "album_name": "周杰伦专辑3"
-                }
-            ]
+            "cover": "http://imgcache.qq.com/music/photo/singer_300/08/300_singerpic_3751508_0.jpg"
         }
 
 ###

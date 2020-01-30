@@ -17,13 +17,7 @@ describe("测试SingerDao", function () {
         let singer = {
             "singer_name": "周杰伦1",
             "introduce": "周杰伦简介1",
-            "cover": "http://imgcache.qq.com/music/photo/singer_300/08/300_singerpic_3751508_0.jpg",
-            "albums": [
-                {
-                    "album_id": "265",
-                    "album_name": "周杰伦专辑1"
-                }
-            ]
+            "cover": "http://imgcache.qq.com/music/photo/singer_300/08/300_singerpic_3751508_0.jpg"
         }
         singerDao.addSinger(singer, function (newSinger) {
             assert.ok(newSinger._id != null)
@@ -40,12 +34,8 @@ describe("测试SingerDao", function () {
 
     it("修改歌手", function (done) {
         let singer = {
-            _id: '5e23c7e8c7ac25e9a7fe4a8f', singer_name: 'Dreamer (梦想家)1', "singers": [
-                {
-                    "singer_id": "941207",
-                    "singer_name": "nie"
-                }
-            ]
+            _id: '5e23c7e8c7ac25e9a7fe4a8f', singer_name: 'Dreamer (梦想家)1'
+
         }
         singerDao.updateSinger(singer, function (newSinger) {
             assert.ok(newSinger._id != null)
