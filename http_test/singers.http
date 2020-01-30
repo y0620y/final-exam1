@@ -9,6 +9,11 @@ GET http://localhost:3000/singers?pageSize=2&pageNum=1
 Accept: application/json
 
 ###
+GET http://localhost:3000/singers/all
+Accept: application/json
+
+###
+
 GET http://localhost:3000/singers?keyword=周杰伦
 Accept: application/json
 

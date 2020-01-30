@@ -47,4 +47,13 @@ router.get('/', function (req, res) {
     })
 })
 
+//查询全部，不分页
+router.get('/all', function (req, res) {
+    singerDao.findAllSingers(function (singers) {
+        res.json({ code: 0, msg: '成功', list: singers })
+    }, function () {
+        res.json({ code: 1, msg: '错误' })
+    })
+})
+
 module.exports = router;

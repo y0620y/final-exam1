@@ -59,4 +59,24 @@ function findSingers(params, callback, errcallback) {
     })
 }
 
-module.exports = { addSinger, deleteSinger, findSingers, updateSinger }
+//查询全部，不分页
+function findAllSingers(callback, errcallback) {
+    singerModel.aggregate([
+        {
+            $project: {
+                value: "$singer_name",
+                _id: 1
+            }
+        },
+    ], (err, singers) => {
+        if (err) {
+            errcallback();
+        } else {
+            callback(singers)
+        }
+    })
+}
+
+
+
+module.exports = { addSinger, deleteSinger, findSingers, findAllSingers, updateSinger }

@@ -68,4 +68,13 @@ describe("测试SingerDao", function () {
         })
     })
 
+    it('测试查询全部（不分页）', function (done) {
+        singerDao.findAllSingers(function (singers) {
+            assert.ok(singers.length > 0)
+            console.log(singers.length)
+            singers.forEach(singer => { console.log(singer._id) })
+            done()
+        })
+    })
+
 })

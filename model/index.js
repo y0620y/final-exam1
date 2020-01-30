@@ -7,16 +7,13 @@ let AlbumSchema = {
     public_time: String,
     price: Number,
     singers: [
-        { singer_id: String, singer_name: String }
+        { _id: false, singer_id: String, singer_name: String }
     ]
 }
 let singerSchema = {
     singer_name: String,
     introduce: String,
-    cover: String,
-    albums: [
-        { album_id: String, album_name: String }
-    ]
+    cover: String
 }
 let Customer = { name: String, password: String, root: Number }
 
