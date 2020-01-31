@@ -63,6 +63,9 @@ function findSingers(params, callback, errcallback) {
                     }
                 },
                 {
+                    $match: findparams
+                },
+                {
                     $sort: { '_id': -1 }
                 },
                 {
