@@ -1,6 +1,7 @@
 //dao/SingerDao.js v1
 const mogoose = require('mongoose')
 let singerModel = mogoose.model("Singer")
+let albumModel = mogoose.model("Album")
 
 // 新增
 function addSinger(singer, callback, errcallback) {
@@ -48,7 +49,30 @@ function findSingers(params, callback, errcallback) {
         if (err) {
             errcallback();
         } else {
-            singerModel.find(findparams).sort({ '_id': -1 }).skip((parseInt(pageNum) - 1) * parseInt(pageSize)).limit(parseInt(pageSize)).exec(function (err, singers) {
+            singerModel.aggregate([
+                // { $addFields: { "sid": { "$toString": "$_id" } } },
+                {
+                    $lookup: {
+                        from: 'albums', localField: '_id', foreignField: 'singers_id', as: 'albums'
+                    }
+                },
+                {
+                    $project: {
+                        'albums.price': 0,
+                        'albums.cover': 0
+                    }
+                },
+                {
+                    $sort: { '_id': -1 }
+                },
+                {
+                    $skip: (parseInt(pageNum) - 1) * parseInt(pageSize)
+                },
+                {
+                    $limit: parseInt(pageSize)
+                }
+
+            ], (err, singers) => {
                 if (err) {
                     errcallback();
                 } else {
@@ -76,7 +100,6 @@ function findAllSingers(callback, errcallback) {
         }
     })
 }
-
 
 
 module.exports = { addSinger, deleteSinger, findSingers, findAllSingers, updateSinger }

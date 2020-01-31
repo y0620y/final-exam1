@@ -38,6 +38,28 @@ function updateAlbum(album, callback, errcallback) {
 }
 
 //查询
+// function findAlbums(params, callback, errcallback) {
+//     let pageNum = params.pageNum;
+//     let pageSize = params.pageSize;
+//     let keyword = params.keyword;
+//     let findparams = keyword ? { album_name: keyword } : {};
+
+//     albumModel.count(findparams, (err, count) => {
+//         if (err) {
+//             errcallback();
+//         } else {
+//             albumModel.find(findparams).sort({ '_id': -1 }).skip((parseInt(pageNum) - 1) * parseInt(pageSize)).limit(parseInt(pageSize)).exec(function (err, albums) {
+//                 if (err) {
+//                     errcallback();
+//                 } else {
+//                     callback(albums, count)
+//                 }
+//             })
+//         }
+//     })
+// }
+
+//查询
 function findAlbums(params, callback, errcallback) {
     let pageNum = params.pageNum;
     let pageSize = params.pageSize;
@@ -48,7 +70,34 @@ function findAlbums(params, callback, errcallback) {
         if (err) {
             errcallback();
         } else {
-            albumModel.find(findparams).sort({ '_id': -1 }).skip((parseInt(pageNum) - 1) * parseInt(pageSize)).limit(parseInt(pageSize)).exec(function (err, albums) {
+            albumModel.aggregate([
+                {
+                    $lookup: {
+                        from: 'singers', localField: 'singers_id', foreignField: '_id', as: 'singers'
+                    }
+                },
+                {
+                    $project: {
+                        'singers.cover': 0,
+                        'singers.introduce': 0
+                    }
+                },
+                {
+                    $match: findparams
+                },
+                {
+                    $sort: {
+                        _id: -1
+                    }
+                },
+                {
+                    $skip: (parseInt(pageNum) - 1) * parseInt(pageSize)
+                },
+                {
+                    $limit: parseInt(pageSize)
+                }
+
+            ], (err, albums) => {
                 if (err) {
                     errcallback();
                 } else {

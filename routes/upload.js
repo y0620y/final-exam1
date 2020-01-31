@@ -35,29 +35,30 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage
 })
+
 const uploadSingle = upload.single('file') // 多图 upload.array('image', 2) 2个限制
 const uploadSingleFile = upload.single('file') // 图片和文件上传删除是一样的，当然简单业务可以公用
 
-// 上传图片
-router.post('/album', (req, res) => {
+// 上传封面
+router.post('/', (req, res) => {
   uploadSingle(req, res, function (err) { //错误处理
     if (err) {
       return res.send({
-        status: 1,
-        msg: '上传文件失败'
+        code: 1,
+        msg: '上传失败'
       })
     }
     var file = req.file
     res.send({
-      status: 0,
+      code: 0,
       data: {
         name: file.filename,
         url: 'http://localhost:3000/upload/' + file.filename
       }
     })
-
   })
 })
+
 
 // 删除图片
 router.post('/img/delete', (req, res) => {
@@ -105,7 +106,7 @@ router.get('/file/download', (req, res) => {
   console.log(1)
   var filename = req.query.filename;
   var oldname = req.query.oldname;
-  var file = dirPath +"/"+ filename;
+  var file = dirPath + "/" + filename;
   res.writeHead(200, {
     'Content-Type': 'application/octet-stream', //告诉浏览器这是一个二进制文件
     'Content-Disposition': 'attachment; filename=' + encodeURI(oldname), //告诉浏览器这是一个需要下载的文件

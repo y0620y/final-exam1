@@ -1,13 +1,15 @@
 // model
 const mongoose = require('mongoose')
+var ObjectId = mongoose.Schema.Types.ObjectId;
+
 mongoose.Promise = require('q').Promise;
 let AlbumSchema = {
     album_name: String,
     cover: String,
     public_time: String,
     price: Number,
-    singers: [
-        { _id: false, singer_id: String, singer_name: String }
+    singers_id: [
+        ObjectId
     ]
 }
 let singerSchema = {
