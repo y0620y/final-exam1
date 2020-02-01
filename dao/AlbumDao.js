@@ -4,7 +4,7 @@ let albumModel = mogoose.model("Album")
 
 // 新增
 function addAlbum(album, callback, errcallback) {
-    let b = albumModel.create(album, function (err, newAlbum) {
+    albumModel.create(album, function (err, newAlbum) {
         if (err) {
             errcallback()
         } else {

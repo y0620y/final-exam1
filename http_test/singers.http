@@ -14,11 +14,6 @@ Accept: application/json
 
 ###
 
-GET http://localhost:3000/singers/allWithAlbum
-Accept: application/json
-
-###
-
 GET http://localhost:3000/singers?keyword=周杰伦
 Accept: application/json
 

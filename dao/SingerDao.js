@@ -1,11 +1,10 @@
 //dao/SingerDao.js v1
 const mogoose = require('mongoose')
 let singerModel = mogoose.model("Singer")
-let albumModel = mogoose.model("Album")
 
 // 新增
 function addSinger(singer, callback, errcallback) {
-    let b = singerModel.create(singer, function (err, newSinger) {
+    singerModel.create(singer, function (err, newSinger) {
         if (err) {
             errcallback()
         } else {

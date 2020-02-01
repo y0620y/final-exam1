@@ -12,15 +12,22 @@ let AlbumSchema = {
         ObjectId
     ]
 }
-let singerSchema = {
+let SingerSchema = {
     singer_name: String,
     introduce: String,
     cover: String
 }
-let Customer = { name: String, password: String, root: Number }
+let UserSchema = {
+    name: String,
+    password: String,
+    root: Number,
+    collect: [
+        ObjectId
+    ]
+}
 
 mongoose.model("Album", AlbumSchema)
-mongoose.model("Singer", singerSchema)
-mongoose.model("Customer", Customer)
+mongoose.model("Singer", SingerSchema)
+mongoose.model("User", UserSchema)
 
 

@@ -7,7 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var albumsRouter = require('./routes/albums');
-var singersRouter = require('./routes/singers')
+var singersRouter = require('./routes/singers');
 var uploadRouter = require('./routes/upload')
 
 

@@ -19,11 +19,8 @@ describe("测试AlbumDao", function () {
             "public_time": "2017-12-11",
             "price": 89,
             "cover": "http://imgcache.qq.com/music/photo/album_300/08/300_albumpic_3751508_0.jpg",
-            "singers": [
-                {
-                    "singer_id": "265",
-                    "singer_name": "王力宏"
-                }
+            "singers_id": [
+                "5e341a91964bc0103dfca240"
             ]
         }
         albumDao.addAlbum(album, function (newAlbum) {
