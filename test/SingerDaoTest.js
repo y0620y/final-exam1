@@ -17,7 +17,7 @@ describe("测试SingerDao", function () {
         let singer = {
             "singer_name": "周杰伦1",
             "introduce": "周杰伦简介1",
-            "cover": "http://imgcache.qq.com/music/photo/singer_300/08/300_singerpic_3751508_0.jpg"
+            "cover": "http://localhost:3000/upload/file-1580472992068.jpg"
         }
         singerDao.addSinger(singer, function (newSinger) {
             assert.ok(newSinger._id != null)
@@ -54,6 +54,14 @@ describe("测试SingerDao", function () {
             console.log(count)
             console.log(singers.length)
             singers.forEach(singer => { console.log(singer._id) })
+            done()
+        })
+    })
+
+    it('测试获取歌手详情', function (done) {
+        singerDao.getSingerDetail("5e341a91964bc0103dfca240", function (singer) {
+            assert.ok(singer.length == 1)
+            console.log(singer)
             done()
         })
     })

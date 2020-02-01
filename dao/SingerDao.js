@@ -85,6 +85,35 @@ function findSingers(params, callback, errcallback) {
     })
 }
 
+//获取详情
+function getSingerDetail(id, callback, errcallback) {
+    singerModel.aggregate([
+        { $addFields: { "sid": { "$toString": "$_id" } } },
+        {
+            $lookup: {
+                from: 'albums', localField: '_id', foreignField: 'singers_id', as: 'albums'
+            }
+        },
+        {
+            $project: {
+                'albums.price': 0,
+                'albums.cover': 0
+            }
+        },
+        {
+            $match: { sid: id }
+        }
+    ], (err, singer) => {
+        if (err) {
+            errcallback();
+        } else {
+            callback(singer)
+        }
+    })
+}
+
+
+
 //查询全部，不分页
 function findAllSingers(callback, errcallback) {
     singerModel.aggregate([
@@ -104,4 +133,4 @@ function findAllSingers(callback, errcallback) {
 }
 
 
-module.exports = { addSinger, deleteSinger, findSingers, findAllSingers, updateSinger }
+module.exports = { getSingerDetail, addSinger, deleteSinger, findSingers, findAllSingers, updateSinger }

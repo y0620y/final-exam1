@@ -121,5 +121,4 @@ function findUsers(params, callback, errcallback) {
 }
 
 
-
 module.exports = { checkUser, addUser, deleteUser, findUsers, updateUser }

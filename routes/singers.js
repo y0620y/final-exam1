@@ -47,6 +47,16 @@ router.get('/', function (req, res) {
     })
 })
 
+// 获取详情
+router.get('/:id', function (req, res) {
+    let id = req.params.id;
+    singerDao.getSingerDetail(id, function (singer) {
+        res.json({ code: 0, msg: '获取成功', data: singer })
+    }, function () {
+        res.json({ code: 1, msg: '获取失败' })
+    })
+})
+
 //查询全部，不分页
 router.get('/all', function (req, res) {
     singerDao.findAllSingers(function (singers) {

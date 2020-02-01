@@ -35,9 +35,11 @@ put http://localhost:3000/users
 Content-Type: application/json
 
         {
-            "_id":"5e3507d2a504ce047474d676",
-            "name": "tom",
-            "password":"1234567"
+            "_id":"5e351a54dd22d90549c26e9d",
+            "collect":[
+                "5e341ac7964bc0103dfca243",
+                "5e341ae4964bc0103dfca244"
+            ]
         }
 
 ###
@@ -47,3 +49,9 @@ Accept: application/json
 
 ###
 
+
+GET http://localhost:3000/users?keyword=nieqiujun
+Accept: application/json
+
+
+###

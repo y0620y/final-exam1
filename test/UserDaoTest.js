@@ -13,16 +13,16 @@ describe("测试UserDao", function () {
         mongoose.disconnect()
     })
 
-    it("测试添加用户", function (done) {
-        let user = {
-            "name": "nieqiujun",
-            "password": "123456"
-        }
-        userDao.addUser(user, function (newUser) {
-            assert.ok(newUser._id != null)
-            done()
-        })
-    })
+    // it("测试添加用户", function (done) {
+    //     let user = {
+    //         "name": "nieqiujun02",
+    //         "password": "123456"
+    //     }
+    //     userDao.addUser(user, function (newUser) {
+    //         assert.ok(newUser._id != null)
+    //         done()
+    //     })
+    // })
 
     it("测试删除", function (done) {
         userDao.deleteUser("5e23c7e8c7ac25e9a7fe4a91", function ({ }) {

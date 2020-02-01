@@ -108,4 +108,34 @@ function findAlbums(params, callback, errcallback) {
     })
 }
 
-module.exports = { addAlbum, deleteAlbum, findAlbums, updateAlbum }
+//获取详情
+function getAlbumDetail(id, callback, errcallback) {
+    albumModel.aggregate([
+        { $addFields: { "sid": { "$toString": "$_id" } } },
+        {
+            $lookup: {
+                from: 'singers', localField: 'singers_id', foreignField: '_id', as: 'singers'
+            }
+        },
+        {
+            $project: {
+                'singers.cover': 0,
+                'singers.introduce': 0
+            }
+        },
+        {
+            $match: { sid: id }
+        }
+
+    ], (err, album) => {
+        if (err) {
+            errcallback();
+        } else {
+            callback(album)
+        }
+    })
+}
+
+
+
+module.exports = { getAlbumDetail, addAlbum, deleteAlbum, findAlbums, updateAlbum }

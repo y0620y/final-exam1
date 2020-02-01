@@ -47,4 +47,14 @@ router.get('/', function (req, res) {
   })
 })
 
+// 获取详情
+router.get('/:id', function (req, res) {
+  let id = req.params.id;
+  albumDao.getAlbumDetail(id, function (album) {
+    res.json({ code: 0, msg: '获取成功', data: album })
+  }, function () {
+    res.json({ code: 1, msg: '获取失败' })
+  })
+})
+
 module.exports = router;
