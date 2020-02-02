@@ -21,9 +21,9 @@ router.post('/login/:root', function (req, res) {
 router.post('/', function (req, res) {
   let user = req.body
   userDao.addUser(user, function (newUser) {
-    res.json({ code: 0, msg: '新增用户成功', data: newUser })
+    res.json({ code: 0, msg: '注册成功', data: newUser })
   }, function (msg) {
-    msg = msg || '新增用户失败'
+    msg = msg || '注册失败'
     res.json({ code: 1, msg: msg })
   })
 })

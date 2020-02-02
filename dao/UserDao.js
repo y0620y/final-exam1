@@ -92,8 +92,7 @@ function findUsers(params, callback, errcallback) {
                 },
                 {
                     $project: {
-                        'albums.price': 0,
-                        'albums.cover': 0
+                        'albums.price': 0
                     }
                 },
                 {
