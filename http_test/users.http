@@ -44,6 +44,27 @@ Content-Type: application/json
 
 ###
 
+put http://localhost:3000/users/addAlbum
+Content-Type: application/json
+
+        {
+            "name":"nieqiujun",
+            "collect":"5e341ab3964bc0103dfca242"
+        }
+
+###
+
+
+put http://localhost:3000/users/removeAlbum
+Content-Type: application/json
+
+        {
+            "name":"nieqiujun",
+            "collect":"5e341ab3964bc0103dfca242"
+        }
+
+###
+
 DELETE http://localhost:3000/users/5e3508062f79bf048a0b8bc2
 Accept: application/json
 

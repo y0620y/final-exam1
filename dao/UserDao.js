@@ -73,6 +73,32 @@ function updateUser(user, callback, errcallback) {
     })
 }
 
+// 收藏专辑
+function addAlbum(user, callback, errcallback) {
+    userModel.findOneAndUpdate({ name: user.name }, {
+        $addToSet: { collect: user.collect }
+    }, function (err) {
+        if (err) {
+            errcallback()
+        } else {
+            callback(user)
+        }
+    })
+}
+
+// 取消专辑
+function removeAlbum(user, callback, errcallback) {
+    userModel.findOneAndUpdate({ name: user.name }, {
+        $pull: { collect: user.collect }
+    }, function (err) {
+        if (err) {
+            errcallback()
+        } else {
+            callback({})
+        }
+    })
+}
+
 //查询
 function findUsers(params, callback, errcallback) {
     let pageNum = params.pageNum;
@@ -120,4 +146,4 @@ function findUsers(params, callback, errcallback) {
 }
 
 
-module.exports = { checkUser, addUser, deleteUser, findUsers, updateUser }
+module.exports = { removeAlbum, addAlbum, checkUser, addUser, deleteUser, findUsers, updateUser }

@@ -7,7 +7,7 @@ router.post('/login/:root', function (req, res) {
   let user = req.body
   let root = req.params.root;
   userDao.checkUser(user, root, function (user) {
-    res.json({ code: 0, msg: user.name + '登录成功' })
+    res.json({ code: 0, msg: user.name + '登录成功', data: user })
   }, function (msg) {
     msg = msg || '登录失败'
     res.json({ code: 1, msg: msg })
@@ -17,7 +17,7 @@ router.post('/login/:root', function (req, res) {
 
 
 
-// 新增
+// 注册
 router.post('/', function (req, res) {
   let user = req.body
   userDao.addUser(user, function (newUser) {
@@ -45,6 +45,26 @@ router.put('/', function (req, res) {
     res.json({ code: 0, msg: '修改用户成功', data: newUser })
   }, function () {
     res.json({ code: 1, msg: '修改用户失败' })
+  })
+})
+
+// 收藏专辑
+router.put('/addAlbum', function (req, res) {
+  let user = req.body
+  userDao.addAlbum(user, function (newUser) {
+    res.json({ code: 0, msg: '收藏专辑成功' })
+  }, function () {
+    res.json({ code: 1, msg: '收藏专辑失败' })
+  })
+})
+
+// 取消收藏专辑
+router.put('/removeAlbum', function (req, res) {
+  let user = req.body
+  userDao.removeAlbum(user, function () {
+    res.json({ code: 0, msg: '取消收藏专辑成功' })
+  }, function () {
+    res.json({ code: 1, msg: '取消收藏专辑失败' })
   })
 })
 

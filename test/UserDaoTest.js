@@ -43,6 +43,27 @@ describe("测试UserDao", function () {
         })
     })
 
+    it("收藏专辑", function (done) {
+        let user = {
+            name: 'nieqiujun', collect: '5e355ebe36e4e60fc9b591a5'
+        }
+        userDao.addAlbum(user, function (newUser) {
+            assert.ok(newUser.collect.length > 0)
+            console.log(newUser)
+            done()
+        })
+    })
+
+    it("取消收藏", function (done) {
+        let user = {
+            name: 'nieqiujun', collect: '5e355ebe36e4e60fc9b591a5'
+        }
+        userDao.removeAlbum(user, function ({ }) {
+            console.log("取消收藏")
+            done()
+        })
+    })
+
     it('测试查询(第一页两条)', function (done) {
         var params = {
             pageSize: 2,
