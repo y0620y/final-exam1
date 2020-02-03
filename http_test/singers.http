@@ -49,7 +49,7 @@ Accept: application/json
 ###
 
 
-GET http://localhost:3000/singers/5e341aa1964bc0103dfca241
+GET http://localhost:3000/singers/detail/5e341aa1964bc0103dfca241
 Accept: application/json
 
 ###

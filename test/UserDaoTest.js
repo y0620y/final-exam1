@@ -24,57 +24,57 @@ describe("测试UserDao", function () {
     //     })
     // })
 
-    it("测试删除", function (done) {
-        userDao.deleteUser("5e23c7e8c7ac25e9a7fe4a91", function ({ }) {
-            console.log({})
-            done()
-        })
-    })
+    // it("测试删除", function (done) {
+    //     userDao.deleteUser("5e23c7e8c7ac25e9a7fe4a91", function ({ }) {
+    //         console.log({})
+    //         done()
+    //     })
+    // })
 
-    it("修改用户", function (done) {
-        let user = {
-            _id: '5e3507d2a504ce047474d676', password: '123123'
+    // it("修改用户", function (done) {
+    //     let user = {
+    //         _id: '5e3507d2a504ce047474d676', password: '123123'
 
-        }
-        userDao.updateUser(user, function (newUser) {
-            assert.ok(newUser._id != null)
-            console.log(newUser)
-            done()
-        })
-    })
+    //     }
+    //     userDao.updateUser(user, function (newUser) {
+    //         assert.ok(newUser._id != null)
+    //         console.log(newUser)
+    //         done()
+    //     })
+    // })
 
-    it("收藏专辑", function (done) {
-        let user = {
-            name: 'nieqiujun', collect: '5e355ebe36e4e60fc9b591a5'
-        }
-        userDao.addAlbum(user, function (newUser) {
-            assert.ok(newUser.collect.length > 0)
-            console.log(newUser)
-            done()
-        })
-    })
+    // it("收藏专辑", function (done) {
+    //     let user = {
+    //         name: 'nieqiujun', collect: '5e355ebe36e4e60fc9b591a5'
+    //     }
+    //     userDao.addAlbum(user, function (newUser) {
+    //         assert.ok(newUser.collect.length > 0)
+    //         console.log(newUser)
+    //         done()
+    //     })
+    // })
 
-    it("取消收藏", function (done) {
-        let user = {
-            name: 'nieqiujun', collect: '5e355ebe36e4e60fc9b591a5'
-        }
-        userDao.removeAlbum(user, function ({ }) {
-            console.log("取消收藏")
-            done()
-        })
-    })
+    // it("取消收藏", function (done) {
+    //     let user = {
+    //         name: 'nieqiujun', collect: '5e355ebe36e4e60fc9b591a5'
+    //     }
+    //     userDao.removeAlbum(user, function ({ }) {
+    //         console.log("取消收藏")
+    //         done()
+    //     })
+    // })
 
-    it('测试查询(第一页两条)', function (done) {
-        var params = {
-            pageSize: 2,
-            pageNum: 1
-        }
-        userDao.findUsers(params, function (users, count) {
-            assert.ok(users.length > 0)
-            console.log(count)
-            console.log(users.length)
-            users.forEach(user => { console.log(user._id) })
-            done()
-        })
-    })
+    // it('测试查询(第一页两条)', function (done) {
+    //     var params = {
+    //         pageSize: 2,
+    //         pageNum: 1
+    //     }
+    //     userDao.findUsers(params, function (users, count) {
+    //         assert.ok(users.length > 0)
+    //         console.log(count)
+    //         console.log(users.length)
+    //         users.forEach(user => { console.log(user._id) })
+    //         done()
+    //     })
+    // })
 })
