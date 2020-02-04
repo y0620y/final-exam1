@@ -136,6 +136,22 @@ function getAlbumDetail(id, callback, errcallback) {
     })
 }
 
+//查询全部，不分页
+function findAllAlbums(callback, errcallback) {
+    albumModel.aggregate([
+        {
+            $project: {
+                value: "$album_name",
+                _id: 1
+            }
+        },
+    ], (err, albums) => {
+        if (err) {
+            errcallback();
+        } else {
+            callback(albums)
+        }
+    })
+}
 
-
-module.exports = { getAlbumDetail, addAlbum, deleteAlbum, findAlbums, updateAlbum }
+module.exports = { findAllAlbums, getAlbumDetail, addAlbum, deleteAlbum, findAlbums, updateAlbum }

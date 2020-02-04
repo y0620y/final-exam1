@@ -57,4 +57,13 @@ router.get('/detail/:id', function (req, res) {
   })
 })
 
+//查询全部，不分页
+router.get('/all', function (req, res) {
+  albumDao.findAllAlbums(function (albums) {
+    res.json({ code: 0, msg: '成功', list: albums })
+  }, function () {
+    res.json({ code: 1, msg: '错误' })
+  })
+})
+
 module.exports = router;

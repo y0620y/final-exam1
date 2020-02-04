@@ -66,4 +66,14 @@ describe("测试AlbumDao", function () {
     //     })
     // })
 
+
+    it('测试查询全部（不分页）', function (done) {
+        albumDao.findAllAlbums(function (albums) {
+            assert.ok(albums.length > 0)
+            console.log(albums)
+            albums.forEach(albums => { console.log(albums.value) })
+            done()
+        })
+    })
+
 })

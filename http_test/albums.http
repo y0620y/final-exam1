@@ -58,4 +58,7 @@ Accept: application/json
 
 ###
 
+GET http://localhost:3000/albums/all
+Accept: application/json
 
+###
