@@ -142,7 +142,8 @@ function findAllAlbums(callback, errcallback) {
         {
             $project: {
                 value: "$album_name",
-                _id: 1
+                _id: 1,
+                cover: 1
             }
         },
     ], (err, albums) => {

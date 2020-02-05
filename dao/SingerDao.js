@@ -120,7 +120,8 @@ function findAllSingers(callback, errcallback) {
         {
             $project: {
                 value: "$singer_name",
-                _id: 1
+                _id: 1,
+                cover: 1
             }
         },
     ], (err, singers) => {
