@@ -11,8 +11,13 @@ Accept: application/json
 ###
 GET http://localhost:3000/singers/all
 Accept: application/json
-
 ###
+
+POST http://localhost:3000/singers/init
+Content-Type: application/json
+###
+
+
 
 GET http://localhost:3000/singers?keyword=周杰伦
 Accept: application/json

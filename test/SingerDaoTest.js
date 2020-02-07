@@ -19,14 +19,16 @@ describe("测试SingerDao", function () {
     //         "introduce": "周杰伦简介1",
     //         "cover": "http://localhost:3000/upload/file-1580472992068.jpg"
     //     }
-    //     singerDao.addSinger(singer, function (newSinger) {
+    //     singerDao.addSinger(singer, function (err, newSinger) {
+    //         assert.ok(err == null)
     //         assert.ok(newSinger._id != null)
     //         done()
     //     })
     // })
 
     // it("测试删除", function (done) {
-    //     singerDao.deleteSinger("5e23c7e8c7ac25e9a7fe4a91", function ({ }) {
+    //     singerDao.deleteSinger("5e23c7e8c7ac25e9a7fe4a91", function (err, { }) {
+    //         assert.ok(err == null)
     //         console.log({})
     //         done()
     //     })
@@ -37,7 +39,8 @@ describe("测试SingerDao", function () {
     //         _id: '5e23c7e8c7ac25e9a7fe4a8f', singer_name: 'Dreamer (梦想家)1'
 
     //     }
-    //     singerDao.updateSinger(singer, function (newSinger) {
+    //     singerDao.updateSinger(singer, function (err, newSinger) {
+    //         assert.ok(err == null)
     //         assert.ok(newSinger._id != null)
     //         console.log(newSinger)
     //         done()
@@ -49,7 +52,8 @@ describe("测试SingerDao", function () {
     //         pageSize: 2,
     //         pageNum: 1
     //     }
-    //     singerDao.findSingers(params, function (singers, count) {
+    //     singerDao.findSingers(params, function (err, singers, count) {
+    //         assert.ok(err == null)
     //         assert.ok(singers.length > 0)
     //         console.log(count)
     //         console.log(singers.length)
@@ -59,7 +63,8 @@ describe("测试SingerDao", function () {
     // })
 
     // it('测试获取歌手详情', function (done) {
-    //     singerDao.getSingerDetail("5e341a91964bc0103dfca240", function (singer) {
+    //     singerDao.getSingerDetail("5e3d2155af19d60e274c2f59", function (err, singer) {
+    //         assert.ok(err == null)
     //         assert.ok(singer.length == 1)
     //         console.log(singer)
     //         done()
@@ -67,7 +72,8 @@ describe("测试SingerDao", function () {
     // })
 
     // it('测试查询全部（不分页）', function (done) {
-    //     singerDao.findAllSingers(function (singers) {
+    //     singerDao.findAllSingers(function (err, singers) {
+    //         assert.ok(err == null)
     //         assert.ok(singers.length > 0)
     //         console.log(singers)
     //         singers.forEach(singer => { console.log(singer.value) })

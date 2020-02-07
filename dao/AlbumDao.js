@@ -3,42 +3,65 @@ const mogoose = require('mongoose')
 let albumModel = mogoose.model("Album")
 
 // 新增
-function addAlbum(album, callback, errcallback) {
+function addAlbum(album, callback) {
     albumModel.create(album, function (err, newAlbum) {
         if (err) {
-            errcallback()
+            callback(err)
         } else {
-            callback(newAlbum.toObject())
+            callback(null, newAlbum.toObject())
+        }
+    })
+}
+// 导入多条
+function addAlbums(albums, callback) {
+    albumModel.create(albums, function (err, newAlbums) {
+        if (!err) {
+            callback(null, newAlbums)
+        }
+        else {
+            callback(err)
+        }
+    })
+}
+
+// 删除全部
+function deleteAll(callback) {
+    albumModel.remove({}, function (err) {
+        if (err) {
+            callback(err)
+        }
+        else {
+            callback(null, {})
         }
     })
 }
 
 //删除
-function deleteAlbum(id, callback, errcallback) {
+function deleteAlbum(id, callback) {
     albumModel.findByIdAndRemove(id, function (err) {
         if (err) {
-            errcallback()
+            callback(err)
         } else {
-            callback({})
+            callback(null, {})
         }
     })
 }
 
 // 修改
-function updateAlbum(album, callback, errcallback) {
+function updateAlbum(album, callback) {
     let id = album._id;
     let newAlbum = { $set: album };
     albumModel.findByIdAndUpdate(id, newAlbum, function (err) {
         if (err) {
-            errcallback()
+            callback(err)
         } else {
-            callback(album)
+            callback(null, album)
         }
     })
 }
 
 //查询
-function findAlbums(params, callback, errcallback) {
+function findAlbums(params, callback) {
     let pageNum = params.pageNum;
     let pageSize = params.pageSize;
     let keyword = params.keyword;
@@ -46,7 +69,7 @@ function findAlbums(params, callback, errcallback) {
 
     albumModel.count(findparams, (err, count) => {
         if (err) {
-            errcallback();
+            callback(err);
         } else {
             albumModel.aggregate([
                 {
@@ -77,9 +100,9 @@ function findAlbums(params, callback, errcallback) {
 
             ], (err, albums) => {
                 if (err) {
-                    errcallback();
+                    callback(err);
                 } else {
-                    callback(albums, count)
+                    callback(null, albums, count)
                 }
             })
         }
@@ -87,7 +110,7 @@ function findAlbums(params, callback, errcallback) {
 }
 
 //获取详情
-function getAlbumDetail(id, callback, errcallback) {
+function getAlbumDetail(id, callback) {
     albumModel.aggregate([
         { $addFields: { "sid": { "$toString": "$_id" } } },
         {
@@ -106,15 +129,15 @@ function getAlbumDetail(id, callback, errcallback) {
 
     ], (err, album) => {
         if (err) {
-            errcallback();
+            callback(err);
         } else {
-            callback(album)
+            callback(null, album)
         }
     })
 }
 
 //查询全部，不分页
-function findAllAlbums(callback, errcallback) {
+function findAllAlbums(callback) {
     albumModel.aggregate([
         {
             $project: {
@@ -125,11 +148,11 @@ function findAllAlbums(callback, errcallback) {
         },
     ], (err, albums) => {
         if (err) {
-            errcallback();
+            callback(err);
         } else {
-            callback(albums)
+            callback(null, albums)
         }
     })
 }
 
-module.exports = { findAllAlbums, getAlbumDetail, addAlbum, deleteAlbum, findAlbums, updateAlbum }
+module.exports = { deleteAll, addAlbums, findAllAlbums, getAlbumDetail, addAlbum, deleteAlbum, findAlbums, updateAlbum }

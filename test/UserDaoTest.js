@@ -15,17 +15,19 @@ describe("测试UserDao", function () {
 
     // it("测试添加用户", function (done) {
     //     let user = {
-    //         "name": "nieqiujun02",
+    //         "name": "ceshi",
     //         "password": "123456"
     //     }
-    //     userDao.addUser(user, function (newUser) {
+    //     userDao.addUser(user, function (err, newUser) {
+    //         assert.ok(err == null)
     //         assert.ok(newUser._id != null)
     //         done()
     //     })
     // })
 
     // it("测试删除", function (done) {
-    //     userDao.deleteUser("5e23c7e8c7ac25e9a7fe4a91", function ({ }) {
+    //     userDao.deleteUser("5e23c7e8c7ac25e9a7fe4a91", function (err, { }) {
+    //         assert.ok(err == null)
     //         console.log({})
     //         done()
     //     })
@@ -36,7 +38,8 @@ describe("测试UserDao", function () {
     //         _id: '5e3507d2a504ce047474d676', password: '123123'
 
     //     }
-    //     userDao.updateUser(user, function (newUser) {
+    //     userDao.updateUser(user, function (err, newUser) {
+    //         assert.ok(err == null)
     //         assert.ok(newUser._id != null)
     //         console.log(newUser)
     //         done()
@@ -47,7 +50,8 @@ describe("测试UserDao", function () {
     //     let user = {
     //         name: 'nieqiujun', collect: '5e355ebe36e4e60fc9b591a5'
     //     }
-    //     userDao.addAlbum(user, function (newUser) {
+    //     userDao.addAlbum(user, function (err, newUser) {
+    //         assert.ok(err == null)
     //         assert.ok(newUser.collect.length > 0)
     //         console.log(newUser)
     //         done()
@@ -58,7 +62,8 @@ describe("测试UserDao", function () {
     //     let user = {
     //         name: 'nieqiujun', collect: '5e355ebe36e4e60fc9b591a5'
     //     }
-    //     userDao.removeAlbum(user, function ({ }) {
+    //     userDao.removeAlbum(user, function (err, { }) {
+    //         assert.ok(err == null)
     //         console.log("取消收藏")
     //         done()
     //     })
@@ -69,7 +74,8 @@ describe("测试UserDao", function () {
     //         pageSize: 2,
     //         pageNum: 1
     //     }
-    //     userDao.findUsers(params, function (users, count) {
+    //     userDao.findUsers(params, function (err, users, count) {
+    //         assert.ok(err == null)
     //         assert.ok(users.length > 0)
     //         console.log(count)
     //         console.log(users.length)

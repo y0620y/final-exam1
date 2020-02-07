@@ -1,0 +1,22 @@
+[
+    {
+        "__v": 0,
+        "album_name": "新增专辑55",
+        "introduce": "新增专辑55简介",
+        "cover": "http://localhost:3000/upload/file-1581061933852.png",
+        "_id": "5e3d42c0f802e413000001b2",
+        "singers_id": [
+            "5e3d5789481d45144f83c09f"
+        ]
+    },
+    {
+        "__v": 0,
+        "album_name": "新增专辑66",
+        "introduce": "新增专辑66简介",
+        "cover": "http://localhost:3000/upload/file-1581061933852.png",
+        "_id": "5e3d42c0f802e413000001b3",
+        "singers_id": [
+            "5e3d5799481d45144f83c0a0"
+        ]
+    }
+]

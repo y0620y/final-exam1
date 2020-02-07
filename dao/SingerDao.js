@@ -3,42 +3,67 @@ const mogoose = require('mongoose')
 let singerModel = mogoose.model("Singer")
 
 // 新增
-function addSinger(singer, callback, errcallback) {
+function addSinger(singer, callback) {
     singerModel.create(singer, function (err, newSinger) {
         if (err) {
-            errcallback()
+            callback(err)
         } else {
-            callback(newSinger.toObject())
+            callback(null, newSinger.toObject())
+        }
+    })
+}
+
+
+// 导入多条
+function addSingers(singers, callback) {
+    singerModel.create(singers, function (err, newSingers) {
+        if (!err) {
+            callback(null, newSingers)
+        }
+        else {
+            callback(err)
+        }
+    })
+}
+
+// 删除全部
+function deleteAll(callback) {
+    singerModel.remove({}, function (err) {
+        if (err) {
+            callback(err)
+        }
+        else {
+            callback(null, {})
         }
     })
 }
 
 //删除
-function deleteSinger(id, callback, errcallback) {
+function deleteSinger(id, callback) {
     singerModel.findByIdAndRemove(id, function (err) {
         if (err) {
-            errcallback()
+            callback(err)
         } else {
-            callback({})
+            callback(null, {})
         }
     })
 }
 
 // 修改
-function updateSinger(singer, callback, errcallback) {
+function updateSinger(singer, callback) {
     let id = singer._id;
     let newSinger = { $set: singer };
     singerModel.findByIdAndUpdate(id, newSinger, function (err) {
         if (err) {
-            errcallback()
+            callback(err)
         } else {
-            callback(singer)
+            callback(null, singer)
         }
     })
 }
 
 //查询
-function findSingers(params, callback, errcallback) {
+function findSingers(params, callback) {
     let pageNum = params.pageNum;
     let pageSize = params.pageSize;
     let keyword = params.keyword;
@@ -46,7 +71,7 @@ function findSingers(params, callback, errcallback) {
 
     singerModel.count(findparams, (err, count) => {
         if (err) {
-            errcallback();
+            callback(err);
         } else {
             singerModel.aggregate([
                 // { $addFields: { "sid": { "$toString": "$_id" } } },
@@ -76,9 +101,9 @@ function findSingers(params, callback, errcallback) {
 
             ], (err, singers) => {
                 if (err) {
-                    errcallback();
+                    callback(err);
                 } else {
-                    callback(singers, count)
+                    callback(null, singers, count)
                 }
             })
         }
@@ -86,7 +111,7 @@ function findSingers(params, callback, errcallback) {
 }
 
 //获取详情
-function getSingerDetail(id, callback, errcallback) {
+function getSingerDetail(id, callback) {
     singerModel.aggregate([
         { $addFields: { "sid": { "$toString": "$_id" } } },
         {
@@ -104,9 +129,9 @@ function getSingerDetail(id, callback, errcallback) {
         }
     ], (err, singer) => {
         if (err) {
-            errcallback();
+            callback(err);
         } else {
-            callback(singer)
+            callback(null, singer)
         }
     })
 }
@@ -114,7 +139,7 @@ function getSingerDetail(id, callback, errcallback) {
 
 
 //查询全部，不分页
-function findAllSingers(callback, errcallback) {
+function findAllSingers(callback) {
     singerModel.aggregate([
         {
             $project: {
@@ -125,12 +150,12 @@ function findAllSingers(callback, errcallback) {
         },
     ], (err, singers) => {
         if (err) {
-            errcallback();
+            callback(err);
         } else {
-            callback(singers)
+            callback(null, singers)
         }
     })
 }
 
 
-module.exports = { getSingerDetail, addSinger, deleteSinger, findSingers, findAllSingers, updateSinger }
+module.exports = { addSingers, deleteAll, getSingerDetail, addSinger, deleteSinger, findSingers, findAllSingers, updateSinger }

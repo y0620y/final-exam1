@@ -23,14 +23,43 @@ describe("测试AlbumDao", function () {
     //             "5e341a91964bc0103dfca240"
     //         ]
     //     }
-    //     albumDao.addAlbum(album, function (newAlbum) {
+    //     albumDao.addAlbum(album, function (err, newAlbum) {
+    //         assert.ok(err == null)
     //         assert.ok(newAlbum._id != null)
     //         done()
     //     })
     // })
 
+
+    it("测试添加多条专辑", function (done) {
+        let albums = [
+            {
+                "album_name": "新增专辑11",
+                "introduce": "新增专辑11简介",
+                "cover": "http://localhost:3000/upload/file-1581061933852.png",
+                "singers_id": [
+                    "5e341aa1964bc0103dfca241"
+                ]
+            },
+            {
+                "album_name": "新增专辑22",
+                "introduce": "新增专辑22简介",
+                "cover": "http://localhost:3000/upload/file-1581061933852.png",
+                "singers_id": [
+                    "5e341aa1964bc0103dfca241"
+                ]
+            }
+        ]
+        albumDao.addAlbums(albums, function (err, newAlbums) {
+            assert.ok(err == null)
+            assert.ok(newAlbums[0].album_name == "新增专辑11")
+            done()
+        })
+    })
+
     // it("测试删除", function (done) {
-    //     albumDao.deleteAlbum("5e23c7e8c7ac25e9a7fe4a91", function ({ }) {
+    //     albumDao.deleteAlbum("5e23c7e8c7ac25e9a7fe4a91", function (err, { }) {
+    //         assert.ok(err == null)
     //         console.log({})
     //         done()
     //     })
@@ -45,7 +74,8 @@ describe("测试AlbumDao", function () {
     //             }
     //         ]
     //     }
-    //     albumDao.updateAlbum(album, function (newAlbum) {
+    //     albumDao.updateAlbum(album, function (err, newAlbum) {
+    //         assert.ok(err == null)
     //         assert.ok(newAlbum._id != null)
     //         console.log(newAlbum)
     //         done()
@@ -57,7 +87,8 @@ describe("测试AlbumDao", function () {
     //         pageSize: 2,
     //         pageNum: 1
     //     }
-    //     albumDao.findAlbums(params, function (albums, count) {
+    //     albumDao.findAlbums(params, function (err, albums, count) {
+    //         assert.ok(err == null)
     //         assert.ok(albums.length > 0)
     //         console.log(count)
     //         console.log(albums.length)
@@ -67,13 +98,14 @@ describe("测试AlbumDao", function () {
     // })
 
 
-    it('测试查询全部（不分页）', function (done) {
-        albumDao.findAllAlbums(function (albums) {
-            assert.ok(albums.length > 0)
-            console.log(albums)
-            albums.forEach(albums => { console.log(albums.value) })
-            done()
-        })
-    })
+    // it('测试查询全部（不分页）', function (done) {
+    //     albumDao.findAllAlbums(function (err, albums) {
+    //         assert.ok(err == null)
+    //         assert.ok(albums.length > 0)
+    //         console.log(albums)
+    //         albums.forEach(albums => { console.log(albums.value) })
+    //         done()
+    //     })
+    // })
 
 })

@@ -3,18 +3,18 @@ const mogoose = require('mongoose')
 let userModel = mogoose.model("User")
 
 // 新增
-function addUser(user, callback, errcallback) {
+function addUser(user, callback) {
     userModel.findOne({ name: user.name }, function (err, doc) {
         if (err) {
-            errcallback('网络异常')
+            callback('网络异常')
         } else if (doc) {
-            errcallback('用户名已存在,请重新输入')
+            callback('用户名已存在,请重新输入')
         } else {
             userModel.create(user, function (err, newUser) {
                 if (err) {
-                    errcallback('网络异常')
+                    callback('网络异常')
                 } else {
-                    callback(newUser.toObject())
+                    callback(null, newUser.toObject())
                 }
             })
         }
@@ -22,10 +22,10 @@ function addUser(user, callback, errcallback) {
 }
 
 // 登录验证
-function checkUser(user, root, callback, errcallback) {
+function checkUser(user, root, callback) {
     userModel.findOne({ name: user.name }, function (err, doc) {
         if (err) {
-            errcallback('网络异常')
+            callback('网络异常')
         } else if (doc) {
             if (user.password === doc.password) {
                 // root为admin，是管理端登录
@@ -33,74 +33,74 @@ function checkUser(user, root, callback, errcallback) {
                     if (doc.root === 1) {
                         callback(doc)
                     } else {
-                        errcallback('用户没有管理权限')
+                        callback('用户没有管理权限')
                     }
                 } else {
-                    callback(doc)
+                    callback(null, doc)
                 }
             }
             else {
-                errcallback('密码错误,请重新输入')
+                callback('密码错误,请重新输入')
             }
         } else {
-            errcallback('用户名不存在,请重新输入')
+            callback('用户名不存在,请重新输入')
         }
     });
 }
 
 
 //删除
-function deleteUser(id, callback, errcallback) {
+function deleteUser(id, callback) {
     userModel.findByIdAndRemove(id, function (err) {
         if (err) {
-            errcallback()
+            callback(err)
         } else {
-            callback({})
+            callback(null, {})
         }
     })
 }
 
 // 修改
-function updateUser(user, callback, errcallback) {
+function updateUser(user, callback) {
     let id = user._id;
     let newUser = { $set: user };
     userModel.findByIdAndUpdate(id, newUser, function (err) {
         if (err) {
-            errcallback()
+            callback(err)
         } else {
-            callback(user)
+            callback(null, user)
         }
     })
 }
 
 // 收藏专辑
-function addAlbum(user, callback, errcallback) {
+function addAlbum(user, callback) {
     userModel.findOneAndUpdate({ name: user.name }, {
         $addToSet: { collect: user.collect }
     }, function (err) {
         if (err) {
-            errcallback()
+            callback(err)
         } else {
-            callback(user)
+            callback(null, user)
         }
     })
 }
 
 // 取消专辑
-function removeAlbum(user, callback, errcallback) {
+function removeAlbum(user, callback) {
     userModel.findOneAndUpdate({ name: user.name }, {
         $pull: { collect: user.collect }
     }, function (err) {
         if (err) {
-            errcallback()
+            callback(err)
         } else {
-            callback({})
+            callback(null, {})
         }
     })
 }
 
 //查询
-function findUsers(params, callback, errcallback) {
+function findUsers(params, callback) {
     let pageNum = params.pageNum;
     let pageSize = params.pageSize;
     let keyword = params.keyword;
@@ -136,9 +136,9 @@ function findUsers(params, callback, errcallback) {
 
             ], (err, users) => {
                 if (err) {
-                    errcallback();
+                    callback(err);
                 } else {
-                    callback(users, count)
+                    callback(null, users, count)
                 }
             })
         }

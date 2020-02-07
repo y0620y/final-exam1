@@ -1,0 +1,16 @@
+[
+    {
+        "_id": "5e3d5789481d45144f83c09f",
+        "singer_name": "歌手1",
+        "introduce": "歌手1简介",
+        "cover": "http://localhost:3000/upload/file-1581078407951.png",
+        "__v": 0
+    },
+    {
+        "_id": "5e3d5799481d45144f83c0a0",
+        "singer_name": "歌手2",
+        "introduce": "歌手2简介",
+        "cover": "http://localhost:3000/upload/file-1581078423981.png",
+        "__v": 0
+    }
+]
