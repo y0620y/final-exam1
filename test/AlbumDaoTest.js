@@ -17,7 +17,7 @@ describe("测试AlbumDao", function () {
     //     let album = {
     //         "album_name": "A.I. 爱1",
     //         "public_time": "2017-12-11",
-    //         "price": 89,
+    //         "introduce": "A.I. 爱1简介",
     //         "cover": "http://imgcache.qq.com/music/photo/album_300/08/300_albumpic_3751508_0.jpg",
     //         "singers_id": [
     //             "5e341a91964bc0103dfca240"

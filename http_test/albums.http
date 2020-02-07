@@ -18,18 +18,15 @@ Accept: application/json
 POST http://localhost:3000/albums
 Content-Type: application/json
 
-{
-            "album_name": "新增专辑2",
-            "public_time": "2017-12-12",
-            "price": 100,
-            "cover": "http://imgcache.qq.com/music/photo/album_300/08/300_albumpic_3751508_0.jpg",
-            "singers": [
-                {
-                    "singer_id": "265",
-                    "singer_name": "周杰伦"
-                }
-            ]
-        }
+    {
+        "album_name":"新增专辑1",
+        "introduce":"新增专辑1简介",
+        "cover":"http://localhost:3000/upload/file-1581061933852.png",
+        "singers_id":[
+            "5e341aa1964bc0103dfca241"
+        ]
+    }
+
 
 ###
 

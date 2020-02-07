@@ -57,7 +57,7 @@ function findSingers(params, callback, errcallback) {
                 },
                 {
                     $project: {
-                        'albums.price': 0,
+                        'albums.introduce': 0,
                         'albums.cover': 0
                     }
                 },
@@ -96,8 +96,7 @@ function getSingerDetail(id, callback, errcallback) {
         },
         {
             $project: {
-                'albums.price': 0,
-                'albums.cover': 0
+                'albums.introduce': 0,
             }
         },
         {

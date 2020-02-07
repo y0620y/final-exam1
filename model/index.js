@@ -8,6 +8,7 @@ let AlbumSchema = {
     cover: String,
     public_time: String,
     price: Number,
+    introduce: String,
     singers_id: [
         ObjectId
     ]

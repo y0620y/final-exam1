@@ -38,28 +38,6 @@ function updateAlbum(album, callback, errcallback) {
 }
 
 //查询
-// function findAlbums(params, callback, errcallback) {
-//     let pageNum = params.pageNum;
-//     let pageSize = params.pageSize;
-//     let keyword = params.keyword;
-//     let findparams = keyword ? { album_name: keyword } : {};
-
-//     albumModel.count(findparams, (err, count) => {
-//         if (err) {
-//             errcallback();
-//         } else {
-//             albumModel.find(findparams).sort({ '_id': -1 }).skip((parseInt(pageNum) - 1) * parseInt(pageSize)).limit(parseInt(pageSize)).exec(function (err, albums) {
-//                 if (err) {
-//                     errcallback();
-//                 } else {
-//                     callback(albums, count)
-//                 }
-//             })
-//         }
-//     })
-// }
-
-//查询
 function findAlbums(params, callback, errcallback) {
     let pageNum = params.pageNum;
     let pageSize = params.pageSize;
@@ -119,7 +97,6 @@ function getAlbumDetail(id, callback, errcallback) {
         },
         {
             $project: {
-                'singers.cover': 0,
                 'singers.introduce': 0
             }
         },
