@@ -75,10 +75,17 @@ function findAlbums(params, callback) {
                 {
                     $lookup: {
                         from: 'singers', localField: 'singers_id', foreignField: '_id', as: 'singers'
-                    }
+                    },
+                },
+                {
+                    $lookup: {
+                        from: 'users', localField: '_id', foreignField: 'collect', as: 'users'
+                    },
                 },
                 {
                     $project: {
+                        'users.password': 0,
+                        'users.root': 0,
                         'singers.cover': 0,
                         'singers.introduce': 0
                     }

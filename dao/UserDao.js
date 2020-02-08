@@ -31,7 +31,7 @@ function checkUser(user, root, callback) {
                 // root为admin，是管理端登录
                 if (root === 'admin') {
                     if (doc.root === 1) {
-                        callback(doc)
+                        callback(null, doc)
                     } else {
                         callback('用户没有管理权限')
                     }
@@ -72,6 +72,7 @@ function updateUser(user, callback) {
         }
     })
 }
+
 
 // 收藏专辑
 function addAlbum(user, callback) {
