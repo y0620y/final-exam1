@@ -67,7 +67,13 @@ function findSingers(params, callback) {
     let pageNum = params.pageNum;
     let pageSize = params.pageSize;
     let keyword = params.keyword;
-    let findparams = keyword ? { singer_name: keyword } : {};
+    let area = params.area;
+    let findparams = {};
+    if (keyword) {
+        findparams = { singer_name: keyword }
+    } else if (area) {
+        findparams = { area: area }
+    }
 
     singerModel.count(findparams, (err, count) => {
         if (err) {

@@ -65,7 +65,9 @@ function findAlbums(params, callback) {
     let pageNum = params.pageNum;
     let pageSize = params.pageSize;
     let keyword = params.keyword;
+    let sort = params.sort;
     let findparams = keyword ? { album_name: keyword } : {};
+    let sortparams = sort ? { users: -1 } : { _id: -1 };
 
     albumModel.count(findparams, (err, count) => {
         if (err) {
@@ -94,9 +96,7 @@ function findAlbums(params, callback) {
                     $match: findparams
                 },
                 {
-                    $sort: {
-                        _id: -1
-                    }
+                    $sort: sortparams
                 },
                 {
                     $skip: (parseInt(pageNum) - 1) * parseInt(pageSize)

@@ -72,7 +72,8 @@ router.get('/', function (req, res) {
   let params = {
     pageSize: query.pageSize || 10,
     pageNum: query.pageNum || 1,
-    keyword: query.keyword
+    keyword: query.keyword,
+    sort: query.sort
   }
   albumDao.findAlbums(params, function (err, albums, count) {
     if (err) {

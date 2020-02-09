@@ -72,7 +72,8 @@ router.get('/', function (req, res) {
     let params = {
         pageSize: query.pageSize || 10,
         pageNum: query.pageNum || 1,
-        keyword: query.keyword
+        keyword: query.keyword,
+        area: query.area,
     }
     singerDao.findSingers(params, function (err, singers, count) {
         if (err) {

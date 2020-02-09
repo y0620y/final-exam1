@@ -16,7 +16,8 @@ let AlbumSchema = {
 let SingerSchema = {
     singer_name: String,
     introduce: String,
-    cover: String
+    cover: String,
+    area: String
 }
 let UserSchema = {
     name: String,
