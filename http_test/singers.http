@@ -35,10 +35,11 @@ POST http://localhost:3000/singers
 Content-Type: application/json
 
 {
-            "singer_name": "梁静茹",
-            "introduce":"梁静茹简介",
-            "cover": "http://imgcache.qq.com/music/photo/singer_300/08/300_singerpic_3751508_0.jpg"
-        }
+    "singer_name": "新增测试歌手0",
+    "introduce": "歌手简介",
+    "cover": "http://localhost:3000/upload/file-1581242286770.jpg",
+    "area": "华语"
+}
 
 ###
 
@@ -46,11 +47,8 @@ put http://localhost:3000/singers
 Content-Type: application/json
 
 {
-            "_id": "5e326956a271bf045d5584d5",
-            "singer_name": "周杰伦3",
-            "introduce":"周杰伦简介3",
-            "cover": "http://imgcache.qq.com/music/photo/singer_300/08/300_singerpic_3751508_0.jpg"
-        }
+    "_id": "5e3fd7f7153c700c3f2de9ee", "singer_name": "周杰伦（测试修改）"
+}
 
 ###
 
@@ -60,7 +58,7 @@ Accept: application/json
 ###
 
 
-GET http://localhost:3000/singers/detail/5e341aa1964bc0103dfca241
+GET http://localhost:3000/singers/detail/5e3fd7f7153c700c3f2de9ee
 Accept: application/json
 
 ###

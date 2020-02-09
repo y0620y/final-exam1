@@ -23,10 +23,7 @@ Content-Type: application/json
 {
             "name": "tom",
             "password":"123456",
-            "collect":[
-                "5e341ac7964bc0103dfca243",
-                "5e341ae4964bc0103dfca244"
-            ]
+            "root":0
         }
 
 ###
@@ -37,8 +34,7 @@ Content-Type: application/json
         {
             "_id":"5e351a54dd22d90549c26e9d",
             "collect":[
-                "5e341ac7964bc0103dfca243",
-                "5e341ae4964bc0103dfca244"
+                "5e3fe042153c700c3f2de9fc"
             ]
         }
 
@@ -49,7 +45,7 @@ Content-Type: application/json
 
         {
             "name":"nieqiujun",
-            "collect":"5e341ab3964bc0103dfca242"
+            "collect":"5e3fe042153c700c3f2de9fc"
         }
 
 ###
@@ -60,7 +56,7 @@ Content-Type: application/json
 
         {
             "name":"nieqiujun",
-            "collect":"5e341ab3964bc0103dfca242"
+            "collect":"5e3fe042153c700c3f2de9fc"
         }
 
 ###

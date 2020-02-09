@@ -13,99 +13,87 @@ describe("测试AlbumDao", function () {
         mongoose.disconnect()
     })
 
-    // it("测试添加专辑", function (done) {
-    //     let album = {
-    //         "album_name": "A.I. 爱1",
-    //         "public_time": "2017-12-11",
-    //         "introduce": "A.I. 爱1简介",
-    //         "cover": "http://imgcache.qq.com/music/photo/album_300/08/300_albumpic_3751508_0.jpg",
-    //         "singers_id": [
-    //             "5e341a91964bc0103dfca240"
-    //         ]
-    //     }
-    //     albumDao.addAlbum(album, function (err, newAlbum) {
-    //         assert.ok(err == null)
-    //         assert.ok(newAlbum._id != null)
-    //         done()
-    //     })
-    // })
+    it("测试添加专辑", function (done) {
+        let album = {
+            "album_name": "新增测试专辑0",
+            "introduce": "简介",
+            "cover": "http://localhost:3000/upload/file-1581244830917.jpg"
+        }
+        albumDao.addAlbum(album, function (err, newAlbum) {
+            assert.ok(err == null)
+            assert.ok(newAlbum._id != null)
+            done()
+        })
+    })
 
 
     it("测试添加多条专辑", function (done) {
         let albums = [
             {
-                "album_name": "新增专辑11",
-                "introduce": "新增专辑11简介",
-                "cover": "http://localhost:3000/upload/file-1581061933852.png",
-                "singers_id": [
-                    "5e341aa1964bc0103dfca241"
-                ]
+                "album_name": "新增测试专辑1",
+                "introduce": "简介",
+                "cover": "http://localhost:3000/upload/file-1581244830917.jpg"
             },
             {
-                "album_name": "新增专辑22",
-                "introduce": "新增专辑22简介",
-                "cover": "http://localhost:3000/upload/file-1581061933852.png",
-                "singers_id": [
-                    "5e341aa1964bc0103dfca241"
-                ]
+                "album_name": "新增测试专辑2",
+                "introduce": "简介",
+                "cover": "http://localhost:3000/upload/file-1581244830917.jpg"
             }
         ]
         albumDao.addAlbums(albums, function (err, newAlbums) {
             assert.ok(err == null)
-            assert.ok(newAlbums[0].album_name == "新增专辑11")
+            assert.ok(newAlbums[0].album_name == "新增测试专辑1")
             done()
         })
     })
 
-    // it("测试删除", function (done) {
-    //     albumDao.deleteAlbum("5e23c7e8c7ac25e9a7fe4a91", function (err, { }) {
-    //         assert.ok(err == null)
-    //         console.log({})
-    //         done()
-    //     })
-    // })
+    it("测试删除", function (done) {
+        albumDao.deleteAlbum("5e3fe1a0153c700c3f2de9ff", function (err, { }) {
+            assert.ok(err == null)
+            console.log({})
+            done()
+        })
+    })
 
-    // it("修改专辑", function (done) {
-    //     let album = {
-    //         _id: '5e23c7e8c7ac25e9a7fe4a8f', album_name: 'Dreamer (梦想家)1', "singers": [
-    //             {
-    //                 "singer_id": "941207",
-    //                 "singer_name": "nie"
-    //             }
-    //         ]
-    //     }
-    //     albumDao.updateAlbum(album, function (err, newAlbum) {
-    //         assert.ok(err == null)
-    //         assert.ok(newAlbum._id != null)
-    //         console.log(newAlbum)
-    //         done()
-    //     })
-    // })
+    it("修改专辑", function (done) {
+        let album = {
+            "_id": "5e3fdfc9153c700c3f2de9fb",
+            "album_name": "玫瑰少年（测试修改）",
+            "introduce": "生而为人无罪 你不需要抱歉",
+            "cover": "http://localhost:3000/upload/file-1581244353586.jpg",
+            "singers_id": [
+                "5e3fd822153c700c3f2de9ef"
+            ]
+        }
+        albumDao.updateAlbum(album, function (err, newAlbum) {
+            assert.ok(err == null)
+            assert.ok(newAlbum._id != null)
+            console.log(newAlbum)
+            done()
+        })
+    })
 
-    // it('测试查询(第一页两条)', function (done) {
-    //     var params = {
-    //         pageSize: 2,
-    //         pageNum: 1
-    //     }
-    //     albumDao.findAlbums(params, function (err, albums, count) {
-    //         assert.ok(err == null)
-    //         assert.ok(albums.length > 0)
-    //         console.log(count)
-    //         console.log(albums.length)
-    //         albums.forEach(album => { console.log(album._id) })
-    //         done()
-    //     })
-    // })
+    it('测试查询', function (done) {
+        var params = {
+            pageSize: 2,
+            pageNum: 1
+        }
+        albumDao.findAlbums(params, function (err, albums, count) {
+            assert.ok(err == null)
+            assert.ok(albums.length > 0)
+            albums.forEach(album => { console.log(album._id) })
+            done()
+        })
+    })
 
-
-    // it('测试查询全部（不分页）', function (done) {
-    //     albumDao.findAllAlbums(function (err, albums) {
-    //         assert.ok(err == null)
-    //         assert.ok(albums.length > 0)
-    //         console.log(albums)
-    //         albums.forEach(albums => { console.log(albums.value) })
-    //         done()
-    //     })
-    // })
+    it('测试查询全部（不分页用于搜索提示）', function (done) {
+        albumDao.findAllAlbums(function (err, albums) {
+            assert.ok(err == null)
+            assert.ok(albums.length > 0)
+            // console.log(albums)
+            albums.forEach(albums => { console.log(albums.value) })
+            done()
+        })
+    })
 
 })

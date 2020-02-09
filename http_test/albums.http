@@ -9,23 +9,19 @@ GET http://localhost:3000/albums?pageSize=10&pageNum=1
 Accept: application/json
 
 ###
-GET http://localhost:3000/albums?keyword=新增专辑1
+GET http://localhost:3000/albums?keyword=逆光
 Accept: application/json
 
 
 ###
-
 POST http://localhost:3000/albums
 Content-Type: application/json
 
-    {
-        "album_name":"新增专辑1",
-        "introduce":"新增专辑1简介",
-        "cover":"http://localhost:3000/upload/file-1581061933852.png",
-        "singers_id":[
-            "5e341aa1964bc0103dfca241"
-        ]
-    }
+ {
+    "album_name": "新增测试专辑1",
+    "introduce": "简介",
+    "cover": "http://localhost:3000/upload/file-1581244830917.jpg"
+ }
 
 ###
 
@@ -37,13 +33,12 @@ put http://localhost:3000/albums
 Content-Type: application/json
 
 {
-  "_id":"5e23fd6460472e305c7579b4",
-  "album_name":"修改专辑2",
-  "singers": [
-        {
-            "singer_id": "266",
-            "singer_name": "王力宏1"
-        }
+    "_id": "5e3fdfc9153c700c3f2de9fb",
+    "album_name": "玫瑰少年（测试修改）",
+    "introduce": "生而为人无罪 你不需要抱歉",
+    "cover": "http://localhost:3000/upload/file-1581244353586.jpg",
+    "singers_id": [
+        "5e3fd822153c700c3f2de9ef"
     ]
 }
 
@@ -53,7 +48,7 @@ DELETE http://localhost:3000/albums/5e23fd6460472e305c7579b4
 Accept: application/json
 
 ###
-GET http://localhost:3000/albums/detail/5e341ac7964bc0103dfca243
+GET http://localhost:3000/albums/detail/5e3fe0c6153c700c3f2de9fd
 Accept: application/json
 
 ###
