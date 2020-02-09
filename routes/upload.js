@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
       code: 0,
       data: {
         name: file.filename,
-        url: 'http://localhost:3000/upload/' + file.filename
+        url: 'http://39.98.147.33:3000/upload/' + file.filename
       }
     })
   })
